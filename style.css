@@ -1,0 +1,45 @@
+/* Stellt sicher, dass der gesamte body den Bildschirm einnimmt */
+html,
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Zentriert das Menü innerhalb des Body */
+#menu {
+  display: flex;
+  flex-direction: column; /* Buttons untereinander */
+  gap: 10px; /* Abstand zwischen den Buttons */
+  align-items: center; /* Buttons zentriert */
+  background-color: rgb(133, 133, 133);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#liveCounter {
+  display: flex;
+  flex-direction: column; /* Buttons untereinander */
+  gap: 10px; /* Abstand zwischen den Buttons */
+  align-items: center; /* Buttons zentriert */
+  background-color: rgb(14, 192, 82);
+  padding: 20px;
+  border-radius: 10px;
+  width: 30vh;
+  margin-left: calc(50% - 30vh / 2);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 1vh;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffcccc;
+}
+
+#info,
+#liveCounter {
+  margin-top: 20px;
+}
