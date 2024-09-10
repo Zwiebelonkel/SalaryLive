@@ -11,13 +11,6 @@ body {
   flex-direction: column;
 }
 
-.topLine {
-  display: flex;
-  justify-content: center; /* Zentriert die beiden Boxen horizontal */
-  gap: 20px; /* Abstand zwischen #gehalt und #liveCounter */
-  margin-left: -70%;
-}
-
 #menu {
   display: flex;
   flex-direction: row;
@@ -29,7 +22,8 @@ body {
   border-radius: 10px;
   width: 110%;
   height: fit-content;
-  margin-left: -10%;}
+  margin-left: -10%;
+}
 
 #liveCounter {
   background-color: rgb(14, 192, 82);
@@ -74,7 +68,6 @@ button:hover {
   padding: 2vh;
   width: fit-content;
   border-radius: 1vh;
-  margin-left: 0%;
 }
 
 #info:hover{
@@ -90,5 +83,3 @@ button:hover {
   gap: 20px;
   flex-direction: row;
 }
-
-
