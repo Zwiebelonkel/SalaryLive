@@ -51,10 +51,11 @@ body {
 
 button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: clamp(1rem, 3vw, 1rem); /* Minimale Größe: 1rem, Dynamisch: 3vw, Maximale Größe: 2rem */
   border-radius: 1vh;
   border: none;
   cursor: pointer;
+  width: fit-content;
 }
 
 button:hover {
@@ -64,6 +65,8 @@ button:hover {
 #info,
 #counter-container {
   margin-top: 20px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 #info{
@@ -71,6 +74,14 @@ button:hover {
   padding: 2vh;
   width: fit-content;
   border-radius: 1vh;
+  margin-left: 0%;
+}
+
+#info:hover{
+  background-color: rgb(98, 202, 202);
+  padding: 2vh;
+  width: fit-content;
+  border-radius: 2vh;
 }
 
 .middleline{
@@ -79,3 +90,5 @@ button:hover {
   gap: 20px;
   flex-direction: row;
 }
+
+

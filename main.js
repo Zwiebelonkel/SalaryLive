@@ -2,25 +2,37 @@ let gesamt = 0;
 let monat = 31;
 let aktuellVerdient = 0;
 let intervalId = null;
+let isÜbersichtVisible = false; // Variable zum Überwachen, ob die Aufschlüsselung sichtbar ist
 
 function zeigeÜbersicht() {
-    if (gesamt != 0 && !isNaN(gesamt)) {  // Überprüfen, ob gesamt eine Zahl ist
-        let tag = gesamt / monat;
-        let stunde = tag / 24;
-        let minute = stunde / 60;
-        let sekunde = minute / 60;
+    const infoElement = document.getElementById("info");
 
-        document.getElementById("info").innerHTML = `
-            <p>Einkommen pro Monat: ${gesamt} €</p>
-            <p>Einkommen pro Tag: ${tag.toFixed(2)} €</p>
-            <p>Einkommen pro Stunde: ${stunde.toFixed(2)} €</p>
-            <p>Einkommen pro Minute: ${minute.toFixed(4)} €</p>
-            <p>Einkommen pro Sekunde: ${sekunde.toFixed(6)} €</p>
-        `;
+    if (isÜbersichtVisible) {
+        // Wenn die Aufschlüsselung bereits angezeigt wird, sie ausblenden
+        infoElement.innerHTML = "";
+        isÜbersichtVisible = false;
     } else {
-        document.getElementById("info").innerHTML = "<p>Sie müssen erst ein gültiges Einkommen festlegen!</p>";
+        // Wenn die Aufschlüsselung nicht angezeigt wird, sie einblenden
+        if (gesamt != 0 && !isNaN(gesamt)) {  // Überprüfen, ob gesamt eine Zahl ist
+            let tag = gesamt / monat;
+            let stunde = tag / 24;
+            let minute = stunde / 60;
+            let sekunde = minute / 60;
+
+            infoElement.innerHTML = `
+                <p>Einkommen pro Monat: ${gesamt} €</p>
+                <p>Einkommen pro Tag: ${tag.toFixed(2)} €</p>
+                <p>Einkommen pro Stunde: ${stunde.toFixed(2)} €</p>
+                <p>Einkommen pro Minute: ${minute.toFixed(4)} €</p>
+                <p>Einkommen pro Sekunde: ${sekunde.toFixed(6)} €</p>
+            `;
+        } else {
+            infoElement.innerHTML = "<p>Sie müssen erst ein gültiges Einkommen festlegen!</p>";
+        }
+        isÜbersichtVisible = true; // Markiere die Übersicht als sichtbar
     }
 }
+
 
 function config() {
     let newGesamt = prompt("Geben Sie Ihr monatliches Einkommen ein:");
@@ -35,7 +47,6 @@ function config() {
 }
 
 function startLiveCounter() {
-    document.getElementById("info").innerHTML = ""
     if (gesamt === 0 || isNaN(gesamt)) {
         alert("Sie müssen erst ein gültiges Einkommen festlegen!");
         config();
