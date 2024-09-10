@@ -28,7 +28,7 @@ function config() {
 
     if (!isNaN(eingegebenesEinkommen)) {
         gesamt = eingegebenesEinkommen;
-        document.getElementById("info").innerHTML = `<p>Gesamt: ${gesamt} $</p>`;
+        document.getElementById("gehalt").innerHTML = `<p>Monatliches Einkommen: ${gesamt} $</p>`;
     } else {
         document.getElementById("info").innerHTML = "<p>Ungültige Eingabe. Bitte geben Sie eine gültige Zahl ein.</p>";
     }
@@ -41,6 +41,7 @@ function startLiveCounter() {
         config();
         return;
     }
+    document.getElementById("liveCounter").style.display = "block";
 
     let sekunde = gesamt / (monat * 24 * 60 * 60); // Einkommen pro Sekunde
 

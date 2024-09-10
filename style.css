@@ -1,30 +1,39 @@
-/* Stellt sicher, dass der gesamte body den Bildschirm einnimmt */
 html,
 body {
   font-family: Arial, sans-serif;
 }
 
-/* Zentriert das Menü innerhalb des Body */
+/* Gemeinsamer Container für #gehalt und #liveCounter */
+#counter-container {
+  display: flex;
+  justify-content: center; /* Zentriert die beiden Boxen horizontal */
+  gap: 20px; /* Abstand zwischen #gehalt und #liveCounter */
+}
+
 #menu {
   display: flex;
-  flex-direction: column; /* Buttons untereinander */
-  gap: 10px; /* Abstand zwischen den Buttons */
-  align-items: center; /* Buttons zentriert */
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
   background-color: rgb(133, 133, 133);
   padding: 20px;
   border-radius: 10px;
 }
 
 #liveCounter {
-  display: flex;
-  flex-direction: column; /* Buttons untereinander */
-  gap: 10px; /* Abstand zwischen den Buttons */
-  align-items: center; /* Buttons zentriert */
   background-color: rgb(14, 192, 82);
   padding: 20px;
   border-radius: 10px;
   width: 30vh;
-  margin-left: calc(50% - 30vh / 2);
+  display: none; /* Startet als versteckt */
+}
+
+#gehalt {
+  color: white;
+  background-color: rgb(14, 106, 192);
+  padding: 20px;
+  border-radius: 10px;
+  width: 30vh;
 }
 
 button {
@@ -40,6 +49,6 @@ button:hover {
 }
 
 #info,
-#liveCounter {
+#counter-container {
   margin-top: 20px;
 }
