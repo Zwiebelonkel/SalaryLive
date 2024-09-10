@@ -34,7 +34,6 @@ function zeigeÜbersicht() {
     }
 }
 
-
 function config() {
     let newGesamt = prompt("Geben Sie Ihr monatliches Einkommen ein:");
     let eingegebenesEinkommen = parseFloat(newGesamt);
@@ -87,9 +86,16 @@ function startLiveCounter() {
         // Berechne den Gesamtverdienst seit Arbeitsbeginn
         let gesamtVerdient = differenzInSekunden * sekunde;
 
+        // Berechne die Zeit seit Mitternacht
+        let mitternacht = new Date(jetzt.getFullYear(), jetzt.getMonth(), jetzt.getDate(), 0, 0, 0);
+        let seitMitternachtSekunden = Math.floor((jetzt - mitternacht) / 1000);
+
+        // Verdienst für den aktuellen Tag
+        let heuteVerdient = seitMitternachtSekunden * sekunde;
+
         document.getElementById("liveCounter").innerHTML = `
             <p>Aktuell verdient: ${aktuellVerdient.toFixed(6)} €</p>
-            <p>Heute verdient: ${(new Date().getSeconds() * sekunde).toFixed(6)} €</p>
+            <p>Heute verdient: ${heuteVerdient.toFixed(6)} €</p>
             <p>Gesamt verdient seit Arbeitsbeginn: ${gesamtVerdient.toFixed(2)} €</p>
         `;
     }, 1000); // Jede Sekunde aktualisieren
