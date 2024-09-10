@@ -2,17 +2,19 @@ let gesamt = 0;
 let monat = 31;
 let aktuellVerdient = 0;
 let intervalId = null;
-let isÜbersichtVisible = false;
-let startDatum = null; // Variable zum Speichern des Startdatums
+let isÜbersichtVisible = false; // Variable zum Überwachen, ob die Aufschlüsselung sichtbar ist
+let startDatum = null; // Arbeitsbeginn-Datum
 
 function zeigeÜbersicht() {
     const infoElement = document.getElementById("info");
 
     if (isÜbersichtVisible) {
+        // Wenn die Aufschlüsselung bereits angezeigt wird, sie ausblenden
         infoElement.innerHTML = "";
         isÜbersichtVisible = false;
     } else {
-        if (gesamt != 0 && !isNaN(gesamt)) {
+        // Wenn die Aufschlüsselung nicht angezeigt wird, sie einblenden
+        if (gesamt != 0 && !isNaN(gesamt)) {  // Überprüfen, ob gesamt eine Zahl ist
             let tag = gesamt / monat;
             let stunde = tag / 24;
             let minute = stunde / 60;
@@ -28,9 +30,10 @@ function zeigeÜbersicht() {
         } else {
             infoElement.innerHTML = "<p>Sie müssen erst ein gültiges Einkommen festlegen!</p>";
         }
-        isÜbersichtVisible = true;
+        isÜbersichtVisible = true; // Markiere die Übersicht als sichtbar
     }
 }
+
 
 function config() {
     let newGesamt = prompt("Geben Sie Ihr monatliches Einkommen ein:");
@@ -39,13 +42,13 @@ function config() {
     if (!isNaN(eingegebenesEinkommen)) {
         gesamt = eingegebenesEinkommen;
         document.getElementById("gehalt").innerHTML = `<p>Monatliches Einkommen: ${gesamt} €</p>`;
-        // Benutzer nach dem Startdatum fragen
-        let eingegebenesDatum = prompt("Geben Sie das Datum ein, seit wann Sie bei Ihrem Unternehmen arbeiten (Format: YYYY-MM-DD):");
-        startDatum = new Date(eingegebenesDatum);
         
-        // Überprüfen, ob das Datum gültig ist
+        // Arbeitsbeginn-Datum erfassen
+        let arbeitsbeginn = prompt("Seit wann arbeiten Sie in diesem Unternehmen? (Format: YYYY-MM-DD)");
+        startDatum = new Date(arbeitsbeginn);
+
         if (isNaN(startDatum.getTime())) {
-            alert("Ungültiges Datum. Bitte versuchen Sie es erneut.");
+            alert("Ungültiges Datum. Bitte ein korrektes Datum eingeben.");
             startDatum = null;
         }
     } else {
@@ -54,11 +57,17 @@ function config() {
 }
 
 function startLiveCounter() {
-    if (gesamt === 0 || isNaN(gesamt) || startDatum === null) {
-        alert("Sie müssen erst ein gültiges Einkommen und Startdatum festlegen!");
+    if (gesamt === 0 || isNaN(gesamt)) {
+        alert("Sie müssen erst ein gültiges Einkommen festlegen!");
         config();
         return;
     }
+    if (!startDatum) {
+        alert("Sie müssen erst ein Startdatum eingeben!");
+        config();
+        return;
+    }
+
     document.getElementById("liveCounter").style.display = "block";
 
     let sekunde = gesamt / (monat * 24 * 60 * 60); // Einkommen pro Sekunde
@@ -69,28 +78,19 @@ function startLiveCounter() {
 
     aktuellVerdient = 0; // Setze aktuellVerdient zurück
     intervalId = setInterval(() => {
-        // Einkommen für die Live-Anzeige
         aktuellVerdient += sekunde;
 
-        // Berechne die aktuelle Uhrzeit seit Mitternacht in Sekunden
-        const jetzt = new Date();
-        const stunden = jetzt.getHours();
-        const minuten = jetzt.getMinutes();
-        const sekunden = jetzt.getSeconds();
-        const sekundenSeitMitternacht = (stunden * 3600) + (minuten * 60) + sekunden;
+        // Berechne die Zeit seit dem Arbeitsbeginn
+        let jetzt = new Date();
+        let differenzInSekunden = Math.floor((jetzt - startDatum) / 1000); // Zeitdifferenz in Sekunden
 
-        // Berechne das heute verdiente Einkommen
-        const heuteVerdient = sekunde * sekundenSeitMitternacht;
+        // Berechne den Gesamtverdienst seit Arbeitsbeginn
+        let gesamtVerdient = differenzInSekunden * sekunde;
 
-        // Berechne den insgesamt verdienten Betrag
-        const zeitSeitStart = Math.floor((jetzt - startDatum) / 1000); // Zeit in Sekunden seit Startdatum
-        const insgesamtVerdient = sekunde * zeitSeitStart;
-
-        // Aktualisiere die Anzeige
         document.getElementById("liveCounter").innerHTML = `
             <p>Aktuell verdient: ${aktuellVerdient.toFixed(6)} €</p>
-            <p>Heute verdient: ${heuteVerdient.toFixed(6)} €</p>
-            <p>Insgesamt verdient: ${insgesamtVerdient.toFixed(6)} € seit ${startDatum.toDateString()}</p>
+            <p>Heute verdient: ${(new Date().getSeconds() * sekunde).toFixed(6)} €</p>
+            <p>Gesamt verdient seit Arbeitsbeginn: ${gesamtVerdient.toFixed(2)} €</p>
         `;
     }, 1000); // Jede Sekunde aktualisieren
 }
