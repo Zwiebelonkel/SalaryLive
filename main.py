@@ -10,11 +10,11 @@ def Übersicht():
         stunde = tag / 24
         minute = stunde / 60
         sekunde = minute / 60
-        print("Einkommen pro Monat: "+str(gesamt)+"$")
-        print("Einkommen pro Tag: "+str(tag)+"$")
-        print("Einkommen pro Stunde: "+str(stunde)+"$")
-        print("Einkommen pro Minute: "+str(minute)+"$")
-        print("Einkommen pro Sekunde: "+str(sekunde)+"$")
+        print("Einkommen pro Monat: "+str(gesamt)+"€")
+        print("Einkommen pro Tag: "+str(tag)+"€")
+        print("Einkommen pro Stunde: "+str(stunde)+"€")
+        print("Einkommen pro Minute: "+str(minute)+"€")
+        print("Einkommen pro Sekunde: "+str(sekunde)+"€")
         print("")
         menu()
     else:
@@ -43,7 +43,7 @@ def earnedNow():
     try:
         while True:
             aktuellVerdient += sekunde  # Füge Einkommen pro Sekunde hinzu
-            print(f"Aktuell verdient: {aktuellVerdient:.6f} $", end="\r")
+            print(f"Aktuell verdient: {aktuellVerdient:.6f} €", end="\r")
             time.sleep(1)  # Warte eine Sekunde
     except KeyboardInterrupt:
         print("\nLive-Counter gestoppt.")

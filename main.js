@@ -11,11 +11,11 @@ function zeigeÜbersicht() {
         let sekunde = minute / 60;
 
         document.getElementById("info").innerHTML = `
-            <p>Einkommen pro Monat: ${gesamt} $</p>
-            <p>Einkommen pro Tag: ${tag.toFixed(2)} $</p>
-            <p>Einkommen pro Stunde: ${stunde.toFixed(2)} $</p>
-            <p>Einkommen pro Minute: ${minute.toFixed(4)} $</p>
-            <p>Einkommen pro Sekunde: ${sekunde.toFixed(6)} $</p>
+            <p>Einkommen pro Monat: ${gesamt} €</p>
+            <p>Einkommen pro Tag: ${tag.toFixed(2)} €</p>
+            <p>Einkommen pro Stunde: ${stunde.toFixed(2)} €</p>
+            <p>Einkommen pro Minute: ${minute.toFixed(4)} €</p>
+            <p>Einkommen pro Sekunde: ${sekunde.toFixed(6)} €</p>
         `;
     } else {
         document.getElementById("info").innerHTML = "<p>Sie müssen erst ein gültiges Einkommen festlegen!</p>";
@@ -28,7 +28,7 @@ function config() {
 
     if (!isNaN(eingegebenesEinkommen)) {
         gesamt = eingegebenesEinkommen;
-        document.getElementById("gehalt").innerHTML = `<p>Monatliches Einkommen: ${gesamt} $</p>`;
+        document.getElementById("gehalt").innerHTML = `<p>Monatliches Einkommen: ${gesamt} €</p>`;
     } else {
         document.getElementById("info").innerHTML = "<p>Ungültige Eingabe. Bitte geben Sie eine gültige Zahl ein.</p>";
     }
@@ -53,7 +53,7 @@ function startLiveCounter() {
     intervalId = setInterval(() => {
         aktuellVerdient += sekunde;
         document.getElementById("liveCounter").innerHTML = `
-            <p>Aktuell verdient: ${aktuellVerdient.toFixed(6)} $</p>
+            <p>Aktuell verdient: ${aktuellVerdient.toFixed(6)} €</p>
         `;
     }, 1000); // Jede Sekunde aktualisieren
 }

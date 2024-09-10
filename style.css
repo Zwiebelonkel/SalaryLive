@@ -8,23 +8,35 @@ body {
   display: flex;
   justify-content: center; /* Zentriert die beiden Boxen horizontal */
   gap: 20px; /* Abstand zwischen #gehalt und #liveCounter */
+  flex-direction: column;
+}
+
+.topLine {
+  display: flex;
+  justify-content: center; /* Zentriert die beiden Boxen horizontal */
+  gap: 20px; /* Abstand zwischen #gehalt und #liveCounter */
+  margin-left: -70%;
 }
 
 #menu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   align-items: center;
+  justify-content: center;
   background-color: rgb(133, 133, 133);
   padding: 20px;
   border-radius: 10px;
-}
+  width: 110%;
+  height: fit-content;
+  margin-left: -10%;}
 
 #liveCounter {
   background-color: rgb(14, 192, 82);
   padding: 20px;
   border-radius: 10px;
-  width: 30vh;
+  width: fit-content;
+  height: fit-content;
   display: none; /* Startet als versteckt */
 }
 
@@ -34,6 +46,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   width: 30vh;
+  height: fit-content;
 }
 
 button {
@@ -45,10 +58,24 @@ button {
 }
 
 button:hover {
-  background-color: #ffcccc;
+  background-color: #b4b4b4;
 }
 
 #info,
 #counter-container {
   margin-top: 20px;
+}
+
+#info{
+  background-color: rgb(98, 202, 202);
+  padding: 2vh;
+  width: fit-content;
+  border-radius: 1vh;
+}
+
+.middleline{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: row;
 }

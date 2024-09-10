@@ -12,20 +12,21 @@
 
 <body>
     <h1>Einkommensrechner</h1>
-
     <div id="menu">
         <button onclick="zeigeÜbersicht()">Aufschlüsselung der Zeiten</button>
         <button onclick="config()">Konfiguration</button>
         <button onclick="startLiveCounter()">Live-Counter</button>
     </div>
-
+<div class="middleline">
     <div id="info"></div>
     <div id="counter-container">
-        <div id="gehalt">
+        
+        <div onclick="config()" id="gehalt">
             Monatliches Einkommen: -
         </div>
         <div id="liveCounter">
         </div>
+    </div>
     </div>
 </body>
 
