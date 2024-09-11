@@ -1,85 +1,141 @@
 html,
 body {
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Gemeinsamer Container für #gehalt und #liveCounter */
-#counter-container {
-  display: flex;
-  justify-content: center; /* Zentriert die beiden Boxen horizontal */
-  gap: 20px; /* Abstand zwischen #gehalt und #liveCounter */
-  flex-direction: column;
+body {
+  padding: 10px;
 }
 
 #menu {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  background-color: rgb(133, 133, 133);
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 10px;
-  width: 110%;
-  height: fit-content;
-  margin-left: -10%;
+  width: 100%;
+  max-width: 600px;
 }
 
-#liveCounter {
-  background-color: rgb(14, 192, 82);
-  padding: 20px;
-  border-radius: 10px;
-  width: fit-content;
-  height: fit-content;
-  display: none; /* Startet als versteckt */
-}
-
-#gehalt {
-  color: white;
-  background-color: rgb(14, 106, 192);
-  padding: 20px;
-  border-radius: 10px;
-  width: 30vh;
-  height: fit-content;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: clamp(1rem, 3vw, 1rem); /* Minimale Größe: 1rem, Dynamisch: 3vw, Maximale Größe: 2rem */
-  border-radius: 1vh;
-  border: none;
-  cursor: pointer;
-  width: fit-content;
-}
-
-button:hover {
-  background-color: #b4b4b4;
+.middleline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 #info,
 #counter-container {
-  margin-top: 20px;
   cursor: pointer;
   transition: 0.2s;
 }
 
-#info{
+#info {
   background-color: rgb(98, 202, 202);
   padding: 2vh;
   width: fit-content;
   border-radius: 1vh;
 }
 
-#info:hover{
+#info:hover {
   background-color: rgb(98, 202, 202);
   padding: 2vh;
   width: fit-content;
   border-radius: 2vh;
 }
 
-.middleline{
+#counter-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
-  flex-direction: row;
+}
+
+#gehalt,
+#liveCounter {
+  color: white;
+  background-color: rgb(14, 106, 192);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+#gehalt {
+  background-color: rgb(14, 106, 192);
+}
+
+#liveCounter {
+  background-color: rgb(14, 192, 82);
+  display: none; /* Startet als versteckt */
+}
+
+.configurations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Abstand zwischen den Elementen */
+  width: 100%;
+  max-width: 400px; /* Maximalbreite für die Eingabefelder und den Button */
+  margin: 0 auto; /* Zentrieren auf der Seite */
+}
+
+input {
+  border-radius: 0.5vh;
+  border: 1px solid black;
+  font-family: sans-serif;
+  padding: 10px;
+  width: 100%; /* Nimmt die volle Breite des Containers ein */
+  box-sizing: border-box; /* Verhindert, dass das Padding die Breite beeinflusst */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 1vh;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Der Button nimmt die volle Breite des Containers ein */
+}
+
+button:hover {
+  background-color: #b4b4b4;
+}
+
+/* Media Queries für kleinere Bildschirme */
+@media (max-width: 768px) {
+  #menu {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #counter-container {
+    width: 100%;
+    gap: 20px;
+  }
+
+  #gehalt,
+  #liveCounter {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  button {
+    width: 100%;
+  }
 }

@@ -35,15 +35,16 @@ function zeigeÜbersicht() {
 }
 
 function config() {
-    let newGesamt = prompt("Geben Sie Ihr monatliches Einkommen ein:");
+    // let newGesamt = prompt("Geben Sie Ihr monatliches Einkommen ein:");
+    let newGesamt = document.getElementById("gehaltInput").value
     let eingegebenesEinkommen = parseFloat(newGesamt);
 
     if (!isNaN(eingegebenesEinkommen)) {
         gesamt = eingegebenesEinkommen;
         document.getElementById("gehalt").innerHTML = `<p>Monatliches Einkommen: ${gesamt} €</p>`;
-        
+
         // Arbeitsbeginn-Datum erfassen
-        let arbeitsbeginn = prompt("Seit wann arbeiten Sie in diesem Unternehmen? (Format: YYYY-MM-DD)");
+        let arbeitsbeginn = document.getElementById("dateInput").value
         startDatum = new Date(arbeitsbeginn);
 
         if (isNaN(startDatum.getTime())) {
