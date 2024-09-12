@@ -46,7 +46,6 @@ function config() {
         // Arbeitsbeginn-Datum erfassen
         let arbeitsbeginn = document.getElementById("dateInput").value
         startDatum = new Date(arbeitsbeginn);
-        zeigeÜbersicht()
         startLiveCounter()
 
         if (isNaN(startDatum.getTime())) {

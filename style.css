@@ -9,15 +9,11 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  box-sizing: border-box; /* Fügt eine globale Box-Sizing-Regel hinzu */
 }
 
 body {
-  margin: 20px; /* Fügt den gewünschten Abstand zum Rand hinzu */
+  margin: 20px; /* Fügt einen Abstand zum Rand des Bildschirms hinzu */
   padding: 10px;
-  width: calc(100% - 40px); /* Berücksichtigt den Rand */
-  height: calc(100% - 40px); /* Berücksichtigt den Rand */
-  box-sizing: border-box;
 }
 
 #menu {
@@ -128,6 +124,19 @@ input {
   transition: 0.3s;
 }
 
+/* Anpassungen für das Date-Input-Feld */
+input[type="date"] {
+  -webkit-appearance: none; /* Entfernt die nativen Stile von iOS Safari */
+  appearance: none;
+  width: 100%; /* Nimmt die volle Breite des Containers ein */
+  padding: 10px;
+  border-radius: 0.5vh;
+  border: 1px solid black;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
 button {
   padding: 10px 20px;
   font-size: 1rem;
@@ -181,5 +190,11 @@ button:hover {
   button {
     width: 50%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  /* Date Input Anpassungen für mobile Bildschirme */
+  input[type="date"] {
+    font-size: 1rem; /* Passt die Schriftgröße für mobile Geräte an */
+    padding: 12px;
   }
 }
