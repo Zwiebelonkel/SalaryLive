@@ -46,6 +46,8 @@ function config() {
         // Arbeitsbeginn-Datum erfassen
         let arbeitsbeginn = document.getElementById("dateInput").value
         startDatum = new Date(arbeitsbeginn);
+        zeigeÜbersicht()
+        startLiveCounter()
 
         if (isNaN(startDatum.getTime())) {
             alert("Ungültiges Datum. Bitte ein korrektes Datum eingeben.");
@@ -54,6 +56,8 @@ function config() {
     } else {
         document.getElementById("info").innerHTML = "<p>Ungültige Eingabe. Bitte geben Sie eine gültige Zahl ein.</p>";
     }
+
+
 }
 
 function startLiveCounter() {
@@ -93,12 +97,19 @@ function startLiveCounter() {
 
         // Verdienst für den aktuellen Tag
         let heuteVerdient = seitMitternachtSekunden * sekunde;
-
-        document.getElementById("liveCounter").innerHTML = `
+        if (startDatum != null) {
+            document.getElementById("liveCounter").innerHTML = `
             <p>Aktuell verdient: ${aktuellVerdient.toFixed(6)} €</p>
             <p>Heute verdient: ${heuteVerdient.toFixed(6)} €</p>
             <p>Gesamt verdient seit Arbeitsbeginn: ${gesamtVerdient.toFixed(2)} €</p>
         `;
+        }
+        else {
+            document.getElementById("liveCounter").innerHTML = `
+            <p>Aktuell verdient: ${aktuellVerdient.toFixed(6)} €</p>
+            <p>Heute verdient: ${heuteVerdient.toFixed(6)} €</p>
+            `;
+        }
     }, 1000); // Jede Sekunde aktualisieren
 }
 
