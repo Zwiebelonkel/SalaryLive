@@ -12,6 +12,7 @@ body {
 }
 
 body {
+  margin: 20px; /* Fügt einen Abstand zum Rand des Bildschirms hinzu */
   padding: 10px;
 }
 
@@ -123,6 +124,10 @@ input {
   transition: 0.3s;
 }
 
+p {
+  margin: 5%;
+}
+
 button {
   padding: 10px 20px;
   font-size: 1rem;
@@ -155,6 +160,11 @@ button:hover {
   #menu {
     flex-direction: column;
     gap: 15px;
+  }
+
+  body {
+    margin: 20px; /* Fügt einen Abstand zum Rand des Bildschirms hinzu */
+    padding: 10px;
   }
 
   #counter-container {
