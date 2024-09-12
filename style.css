@@ -86,6 +86,21 @@ body {
   background-color: rgb(14, 192, 82);
   display: none; /* Startet als versteckt */
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  animation-name: "cash";
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes cash {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .configurations {
@@ -105,6 +120,7 @@ input {
   padding: 10px;
   width: 100%; /* Nimmt die volle Breite des Containers ein */
   box-sizing: border-box; /* Verhindert, dass das Padding die Breite beeinflusst */
+  transition: 0.3s;
 }
 
 button {
@@ -113,11 +129,25 @@ button {
   border-radius: 1vh;
   border: none;
   cursor: pointer;
-  width: 100%; /* Der Button nimmt die volle Breite des Containers ein */
+  width: 50%; /* Der Button nimmt die volle Breite des Containers ein */
+  transition: 0.3s;
 }
 
 button:hover {
   background-color: #b4b4b4;
+  transition: 0.3s;
+  width: 100%;
+}
+
+#gehaltInput,
+#dateInput {
+  cursor: pointer;
+}
+
+#gehaltInput:hover,
+#dateInput:hover {
+  cursor: pointer;
+  scale: 1.05;
 }
 
 /* Media Queries für kleinere Bildschirme */
