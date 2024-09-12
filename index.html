@@ -15,13 +15,13 @@
     <h1>Einkommensrechner</h1>
 
     <!-- Menü mit Buttons für die Konfiguration und Anzeige -->
-    <div id="menu">
+    <!-- <div id="menu">
         <button onclick="zeigeÜbersicht()">Aufschlüsselung der Zeiten</button>
         <button onclick="startLiveCounter()">Live-Counter starten</button>
         <button onclick="stopLiveCounter()">Live-Counter stoppen</button>
-    </div>
+    </div> -->
     <div class="configuations"></div>
-    <p>Wie viel Einkommen haben Sie im Monat?<input type="number" id="gehaltInput"
+    <p>Wie viel Einkommen haben Sie im Monat?<input onchange="checkType()" type="number" id="gehaltInput"
             placeholder="Geben Sie Ihr Monatlichen Einkommen ein"></p>
     <p>Seid wann arbeiten Sie in ihrem Unternehemen?<input type="date" id="dateInput"
             placeholder="Seit wann arbeiten Sie hier?"></p>

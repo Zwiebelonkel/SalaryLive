@@ -75,6 +75,7 @@ body {
   width: 100%;
   max-width: 400px;
   text-align: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 #gehalt {
@@ -84,6 +85,7 @@ body {
 #liveCounter {
   background-color: rgb(14, 192, 82);
   display: none; /* Startet als versteckt */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .configurations {
@@ -137,6 +139,7 @@ button:hover {
   }
 
   button {
-    width: 100%;
+    width: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 }

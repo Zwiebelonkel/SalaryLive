@@ -55,19 +55,28 @@ function config() {
     } else {
         document.getElementById("info").innerHTML = "<p>Ungültige Eingabe. Bitte geben Sie eine gültige Zahl ein.</p>";
     }
-
-
 }
+
+function checkType() {
+    let gehaltInput = document.getElementById("gehaltInput").value;
+    let valueAsNumber = parseFloat(gehaltInput); // Konvertiere den Wert in eine Zahl
+
+    if (isNaN(valueAsNumber)) {
+        document.getElementById("gehaltInput").style.backgroundColor = "RGB(255, 129, 120)";
+    } else {
+        document.getElementById("gehaltInput").style.backgroundColor = "RGB(161, 255, 140)";
+    }
+}
+
+
 
 function startLiveCounter() {
     if (gesamt === 0 || isNaN(gesamt)) {
         alert("Sie müssen erst ein gültiges Einkommen festlegen!");
-        config();
         return;
     }
     if (!startDatum) {
         alert("Sie müssen erst ein Startdatum eingeben!");
-        config();
         return;
     }
 
