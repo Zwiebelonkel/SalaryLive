@@ -9,11 +9,15 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  box-sizing: border-box; /* Fügt eine globale Box-Sizing-Regel hinzu */
 }
 
 body {
-  margin: 20px; /* Fügt einen Abstand zum Rand des Bildschirms hinzu */
+  margin: 20px; /* Fügt den gewünschten Abstand zum Rand hinzu */
   padding: 10px;
+  width: calc(100% - 40px); /* Berücksichtigt den Rand */
+  height: calc(100% - 40px); /* Berücksichtigt den Rand */
+  box-sizing: border-box;
 }
 
 #menu {
@@ -122,10 +126,6 @@ input {
   width: 100%; /* Nimmt die volle Breite des Containers ein */
   box-sizing: border-box; /* Verhindert, dass das Padding die Breite beeinflusst */
   transition: 0.3s;
-}
-
-p {
-  margin: 5%;
 }
 
 button {
