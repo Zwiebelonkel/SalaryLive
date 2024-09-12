@@ -50,7 +50,6 @@ function config() {
         startLiveCounter()
 
         if (isNaN(startDatum.getTime())) {
-            alert("Ungültiges Datum. Bitte ein korrektes Datum eingeben.");
             startDatum = null;
         }
     } else {
