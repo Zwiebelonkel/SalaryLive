@@ -60,7 +60,7 @@ function checkType() {
     let gehaltInput = document.getElementById("gehaltInput").value;
     let valueAsNumber = parseFloat(gehaltInput); // Konvertiere den Wert in eine Zahl
 
-    if (isNaN(valueAsNumber)) {
+    if (isNaN(valueAsNumber) || valueAsNumber <= 0) {
         document.getElementById("gehaltInput").style.backgroundColor = "RGB(255, 129, 120)";
     } else {
         document.getElementById("gehaltInput").style.backgroundColor = "RGB(161, 255, 140)";
