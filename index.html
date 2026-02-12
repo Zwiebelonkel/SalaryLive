@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -23,292 +22,289 @@
         </div>
     </header>
 
-```
-<!-- Main Content -->
-<main class="main-content">
-    <div class="container">
-        
-        <!-- Configuration Card -->
-        <section class="card config-card" id="configSection">
-            <div class="card-header">
-                <h2>Konfiguration</h2>
-                <p class="subtitle">Geben Sie Ihre Einkommensdaten ein</p>
-            </div>
-            <div class="card-body">
-                <form id="incomeForm" onsubmit="event.preventDefault(); config();">
-                    <div class="form-group">
-                        <label for="gehaltInput">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <path d="M7 15h0M2 9.5h20"/>
-                            </svg>
-                            Monatliches Bruttoeinkommen
-                        </label>
-                        <div class="input-wrapper">
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Configuration Card -->
+            <section class="card config-card" id="configSection">
+                <div class="card-header">
+                    <h2>Konfiguration</h2>
+                    <p class="subtitle">Geben Sie Ihre Einkommensdaten ein</p>
+                </div>
+                <div class="card-body">
+                    <form id="incomeForm" onsubmit="event.preventDefault(); config();">
+                        <div class="form-group">
+                            <label for="gehaltInput">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M7 15h0M2 9.5h20"/>
+                                </svg>
+                                Monatliches Bruttoeinkommen
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="number" 
+                                    id="gehaltInput" 
+                                    placeholder="z.B. 3500" 
+                                    oninput="checkType()"
+                                    step="0.01"
+                                    min="0"
+                                    required
+                                >
+                                <span class="input-suffix">€</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateInput">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                Arbeitsbeginn
+                            </label>
                             <input 
-                                type="number" 
-                                id="gehaltInput" 
-                                placeholder="z.B. 3500" 
-                                oninput="checkType()"
-                                step="0.01"
-                                min="0"
+                                type="date" 
+                                id="dateInput" 
                                 required
                             >
-                            <span class="input-suffix">€</span>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="dateInput">
+                        <button type="submit" class="btn btn-primary">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                <polyline points="20 6 9 17 4 12"/>
                             </svg>
-                            Arbeitsbeginn
-                        </label>
-                        <input 
-                            type="date" 
-                            id="dateInput" 
-                            required
-                        >
-                    </div>
+                            Berechnung starten
+                        </button>
+                    </form>
+                </div>
+            </section>
 
-                    <button type="submit" class="btn btn-primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"/>
+            <!-- Stats Grid -->
+            <div class="stats-grid" id="statsGrid" style="display: none;">
+                
+                <!-- Monthly Income Card -->
+                <div class="card stat-card">
+                    <div class="stat-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                         </svg>
-                        Berechnung starten
+                    </div>
+                    <div class="stat-content">
+                        <h3>Monatlich</h3>
+                        <p class="stat-value" id="monthlyIncome">-</p>
+                    </div>
+                </div>
+
+                <!-- Daily Income Card -->
+                <div class="card stat-card">
+                    <div class="stat-icon green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Täglich</h3>
+                        <p class="stat-value" id="dailyIncome">-</p>
+                    </div>
+                </div>
+
+                <!-- Hourly Income Card -->
+                <div class="card stat-card">
+                    <div class="stat-icon purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 10"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Stündlich</h3>
+                        <p class="stat-value" id="hourlyIncome">-</p>
+                    </div>
+                </div>
+
+                <!-- Per Minute Income Card -->
+                <div class="card stat-card">
+                    <div class="stat-icon orange">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Pro Minute</h3>
+                        <p class="stat-value" id="minuteIncome">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Counter Section -->
+            <section class="card live-card" id="liveCounterCard" style="display: none;">
+                <div class="card-header">
+                    <div class="live-indicator">
+                        <span class="pulse"></span>
+                        <span>LIVE</span>
+                    </div>
+                    <button class="btn-icon" onclick="stopLiveCounter()" title="Counter stoppen">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="6" y="4" width="4" height="16"/>
+                            <rect x="14" y="4" width="4" height="16"/>
+                        </svg>
                     </button>
-                </form>
-            </div>
-        </section>
+                </div>
+                <div class="card-body">
+                    <div class="live-stats">
+                        <div class="live-stat-item">
+                            <span class="live-label">Aktuell verdient</span>
+                            <span class="live-value primary" id="currentEarned">0,00 €</span>
+                        </div>
+                        <div class="live-stat-item">
+                            <span class="live-label">Heute verdient</span>
+                            <span class="live-value secondary" id="todayEarned">0,00 €</span>
+                        </div>
+                        <div class="live-stat-item">
+                            <span class="live-label">Gesamt seit Arbeitsbeginn</span>
+                            <span class="live-value tertiary" id="totalEarned">0,00 €</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Stats Grid -->
-        <div class="stats-grid" id="statsGrid" style="display: none;">
-            
-            <!-- Monthly Income Card -->
-            <div class="card stat-card">
-                <div class="stat-icon blue">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            <!-- Breakdown Section (toggleable) -->
+            <section class="card breakdown-card" id="breakdownCard" style="display: none;">
+                <div class="card-header clickable" onclick="toggleBreakdown()">
+                    <h3>Detaillierte Aufschlüsselung</h3>
+                    <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </div>
-                <div class="stat-content">
-                    <h3>Monatlich</h3>
-                    <p class="stat-value" id="monthlyIncome">-</p>
+                <div class="card-body breakdown-content" id="breakdownContent" style="display: none;">
+                    <div class="breakdown-grid" id="breakdownGrid"></div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Daily Income Card -->
-            <div class="card stat-card">
-                <div class="stat-icon green">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                </div>
-                <div class="stat-content">
-                    <h3>Täglich</h3>
-                    <p class="stat-value" id="dailyIncome">-</p>
-                </div>
-            </div>
+            <!-- Money Rain Animation -->
+            <div class="money-rain" id="moneyRain"></div>
 
-            <!-- Hourly Income Card -->
-            <div class="card stat-card">
-                <div class="stat-icon purple">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 10"/>
-                    </svg>
+            <!-- Wealth Dashboard -->
+            <section class="card wealth-dashboard" id="wealthDashboard" style="display: none;">
+                <div class="card-header">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <h2>Vermögensprojektion</h2>
+                    </div>
+                    <p class="subtitle">Ihr Einkommenswachstum visualisiert</p>
                 </div>
-                <div class="stat-content">
-                    <h3>Stündlich</h3>
-                    <p class="stat-value" id="hourlyIncome">-</p>
-                </div>
-            </div>
+                <div class="card-body">
+                    <!-- Earnings Chart -->
+                    <div class="chart-container">
+                        <h4>📈 Einkommensverlauf</h4>
+                        <canvas id="earningsChart"></canvas>
+                    </div>
 
-            <!-- Per Minute Income Card -->
-            <div class="card stat-card">
-                <div class="stat-icon orange">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12"/>
-                    </svg>
+                    <!-- Projection Stats -->
+                    <div class="projection-grid">
+                        <div class="projection-card">
+                            <div class="projection-icon">💰</div>
+                            <div class="projection-content">
+                                <span class="projection-label">Diese Woche</span>
+                                <span class="projection-value" id="weekProjection">0 €</span>
+                            </div>
+                        </div>
+                        <div class="projection-card">
+                            <div class="projection-icon">💵</div>
+                            <div class="projection-content">
+                                <span class="projection-label">Dieser Monat</span>
+                                <span class="projection-value" id="monthProjection">0 €</span>
+                            </div>
+                        </div>
+                        <div class="projection-card">
+                            <div class="projection-icon">💎</div>
+                            <div class="projection-content">
+                                <span class="projection-label">Dieses Jahr</span>
+                                <span class="projection-value" id="yearProjection">0 €</span>
+                            </div>
+                        </div>
+                        <div class="projection-card">
+                            <div class="projection-icon">🏆</div>
+                            <div class="projection-content">
+                                <span class="projection-label">In 5 Jahren</span>
+                                <span class="projection-value" id="fiveYearProjection">0 €</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-content">
-                    <h3>Pro Minute</h3>
-                    <p class="stat-value" id="minuteIncome">-</p>
+            </section>
+
+            <!-- What You Can Afford -->
+            <section class="card afford-card" id="affordCard" style="display: none;">
+                <div class="card-header">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        <h2>Kaufkraft-Analyse</h2>
+                    </div>
+                    <p class="subtitle">Was können Sie sich leisten?</p>
                 </div>
-            </div>
+                <div class="card-body">
+                    <div class="afford-grid" id="affordGrid"></div>
+                </div>
+            </section>
+
+            <!-- Milestones -->
+            <section class="card milestones-card" id="milestonesCard" style="display: none;">
+                <div class="card-header">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        <h2>Einkommens-Meilensteine</h2>
+                    </div>
+                    <p class="subtitle">Erreichen Sie Ihre Ziele</p>
+                </div>
+                <div class="card-body">
+                    <div class="milestones-list" id="milestonesList"></div>
+                </div>
+            </section>
+
+            <!-- Comparison Section -->
+            <section class="card comparison-card" id="comparisonCard" style="display: none;">
+                <div class="card-header">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                        <h2>Einkommens-Vergleich</h2>
+                    </div>
+                    <p class="subtitle">Ihr Einkommen im Vergleich</p>
+                </div>
+                <div class="card-body">
+                    <div class="comparison-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
         </div>
+    </main>
 
-        <!-- Live Counter Section -->
-        <section class="card live-card" id="liveCounterCard" style="display: none;">
-            <div class="card-header">
-                <div class="live-indicator">
-                    <span class="pulse"></span>
-                    <span>LIVE</span>
-                </div>
-                <button class="btn-icon" onclick="stopLiveCounter()" title="Counter stoppen">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="6" y="4" width="4" height="16"/>
-                        <rect x="14" y="4" width="4" height="16"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="card-body">
-                <div class="live-stats">
-                    <div class="live-stat-item">
-                        <span class="live-label">Aktuell verdient</span>
-                        <span class="live-value primary" id="currentEarned">0,00 €</span>
-                    </div>
-                    <div class="live-stat-item">
-                        <span class="live-label">Heute verdient</span>
-                        <span class="live-value secondary" id="todayEarned">0,00 €</span>
-                    </div>
-                    <div class="live-stat-item">
-                        <span class="live-label">Gesamt seit Arbeitsbeginn</span>
-                        <span class="live-value tertiary" id="totalEarned">0,00 €</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Breakdown Section (toggleable) -->
-        <section class="card breakdown-card" id="breakdownCard" style="display: none;">
-            <div class="card-header clickable" onclick="toggleBreakdown()">
-                <h3>Detaillierte Aufschlüsselung</h3>
-                <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6 9 12 15 18 9"/>
-                </svg>
-            </div>
-            <div class="card-body breakdown-content" id="breakdownContent" style="display: none;">
-                <div class="breakdown-grid" id="breakdownGrid"></div>
-            </div>
-        </section>
-
-        <!-- Money Rain Animation -->
-        <div class="money-rain" id="moneyRain"></div>
-
-        <!-- Wealth Dashboard -->
-        <section class="card wealth-dashboard" id="wealthDashboard" style="display: none;">
-            <div class="card-header">
-                <div class="dashboard-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    <h2>Vermögensprojektion</h2>
-                </div>
-                <p class="subtitle">Ihr Einkommenswachstum visualisiert</p>
-            </div>
-            <div class="card-body">
-                <!-- Earnings Chart -->
-                <div class="chart-container">
-                    <h4>📈 Einkommensverlauf</h4>
-                    <canvas id="earningsChart"></canvas>
-                </div>
-
-                <!-- Projection Stats -->
-                <div class="projection-grid">
-                    <div class="projection-card">
-                        <div class="projection-icon">💰</div>
-                        <div class="projection-content">
-                            <span class="projection-label">Diese Woche</span>
-                            <span class="projection-value" id="weekProjection">0 €</span>
-                        </div>
-                    </div>
-                    <div class="projection-card">
-                        <div class="projection-icon">💵</div>
-                        <div class="projection-content">
-                            <span class="projection-label">Dieser Monat</span>
-                            <span class="projection-value" id="monthProjection">0 €</span>
-                        </div>
-                    </div>
-                    <div class="projection-card">
-                        <div class="projection-icon">💎</div>
-                        <div class="projection-content">
-                            <span class="projection-label">Dieses Jahr</span>
-                            <span class="projection-value" id="yearProjection">0 €</span>
-                        </div>
-                    </div>
-                    <div class="projection-card">
-                        <div class="projection-icon">🏆</div>
-                        <div class="projection-content">
-                            <span class="projection-label">In 5 Jahren</span>
-                            <span class="projection-value" id="fiveYearProjection">0 €</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- What You Can Afford -->
-        <section class="card afford-card" id="affordCard" style="display: none;">
-            <div class="card-header">
-                <div class="dashboard-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
-                    <h2>Kaufkraft-Analyse</h2>
-                </div>
-                <p class="subtitle">Was können Sie sich leisten?</p>
-            </div>
-            <div class="card-body">
-                <div class="afford-grid" id="affordGrid"></div>
-            </div>
-        </section>
-
-        <!-- Milestones -->
-        <section class="card milestones-card" id="milestonesCard" style="display: none;">
-            <div class="card-header">
-                <div class="dashboard-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                    <h2>Einkommens-Meilensteine</h2>
-                </div>
-                <p class="subtitle">Erreichen Sie Ihre Ziele</p>
-            </div>
-            <div class="card-body">
-                <div class="milestones-list" id="milestonesList"></div>
-            </div>
-        </section>
-
-        <!-- Comparison Section -->
-        <section class="card comparison-card" id="comparisonCard" style="display: none;">
-            <div class="card-header">
-                <div class="dashboard-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="20" x2="18" y2="10"/>
-                        <line x1="12" y1="20" x2="12" y2="4"/>
-                        <line x1="6" y1="20" x2="6" y2="14"/>
-                    </svg>
-                    <h2>Einkommens-Vergleich</h2>
-                </div>
-                <p class="subtitle">Ihr Einkommen im Vergleich</p>
-            </div>
-            <div class="card-body">
-                <div class="comparison-container">
-                    <canvas id="comparisonChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-    </div>
-</main>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 Einkommensrechner. Alle Berechnungen sind Richtwerte.</p>
-    </div>
-</footer>
-```
-
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Einkommensrechner. Alle Berechnungen sind Richtwerte.</p>
+        </div>
+    </footer>
 </body>
 </html>
