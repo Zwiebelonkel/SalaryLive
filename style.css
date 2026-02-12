@@ -683,3 +683,395 @@ transform: rotate(360deg);
 button, input, .card, .stat-card, .live-stat-item {
 transition: var(–transition);
 }
+
+/* Money Rain Animation */
+.money-rain {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 9999;
+overflow: hidden;
+}
+
+.money-symbol {
+position: absolute;
+font-size: 24px;
+animation: fall linear infinite;
+opacity: 0;
+}
+
+@keyframes fall {
+0% {
+opacity: 0;
+transform: translateY(-50px) rotate(0deg);
+}
+10% {
+opacity: 1;
+}
+90% {
+opacity: 1;
+}
+100% {
+opacity: 0;
+transform: translateY(100vh) rotate(360deg);
+}
+}
+
+/* Wealth Dashboard */
+.wealth-dashboard {
+background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(31, 31, 31, 1) 100%);
+border: 1px solid rgba(255, 167, 38, 0.3);
+}
+
+.dashboard-title {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+}
+
+.dashboard-title svg {
+color: var(–primary-color);
+filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+}
+
+.dashboard-title h2 {
+margin: 0;
+}
+
+/* Chart Container */
+.chart-container {
+margin-bottom: 2rem;
+padding: 1.5rem;
+background: rgba(255, 255, 255, 0.02);
+border-radius: var(–radius);
+border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.chart-container h4 {
+color: var(–text-primary);
+margin-bottom: 1.5rem;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.chart-container canvas {
+max-height: 300px;
+}
+
+/* Projection Grid */
+.projection-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1rem;
+}
+
+.projection-card {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding: 1.5rem;
+background: rgba(255, 255, 255, 0.02);
+border-radius: var(–radius);
+border: 1px solid rgba(255, 107, 53, 0.15);
+transition: var(–transition);
+}
+
+.projection-card:hover {
+transform: translateY(-5px);
+border-color: var(–primary-color);
+box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+background: rgba(255, 107, 53, 0.05);
+}
+
+.projection-icon {
+font-size: 2.5rem;
+filter: drop-shadow(0 0 10px rgba(255, 167, 38, 0.5));
+animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+0%, 100% {
+transform: translateY(0);
+}
+50% {
+transform: translateY(-10px);
+}
+}
+
+.projection-content {
+display: flex;
+flex-direction: column;
+gap: 0.25rem;
+}
+
+.projection-label {
+font-size: 0.875rem;
+color: var(–text-muted);
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.projection-value {
+font-size: 1.5rem;
+font-weight: 700;
+color: var(–text-primary);
+background: linear-gradient(135deg, #ff6b35, #ffa726);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+/* Afford Section */
+.afford-card {
+background: linear-gradient(135deg, rgba(255, 183, 77, 0.1) 0%, rgba(31, 31, 31, 1) 100%);
+border: 1px solid rgba(255, 183, 77, 0.3);
+}
+
+.afford-grid {
+display: grid;
+gap: 1rem;
+}
+
+.afford-item {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1.25rem;
+background: rgba(255, 255, 255, 0.02);
+border-radius: var(–radius);
+border-left: 4px solid var(–accent-color);
+transition: var(–transition);
+}
+
+.afford-item:hover {
+transform: translateX(10px);
+background: rgba(255, 183, 77, 0.05);
+border-left-color: var(–primary-color);
+}
+
+.afford-item-content {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.afford-item-icon {
+font-size: 2rem;
+filter: drop-shadow(0 0 8px rgba(255, 183, 77, 0.4));
+}
+
+.afford-item-details h5 {
+margin: 0 0 0.25rem 0;
+color: var(–text-primary);
+font-size: 1.1rem;
+}
+
+.afford-item-details p {
+margin: 0;
+color: var(–text-muted);
+font-size: 0.875rem;
+}
+
+.afford-time {
+text-align: right;
+}
+
+.afford-time-label {
+display: block;
+font-size: 0.75rem;
+color: var(–text-muted);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin-bottom: 0.25rem;
+}
+
+.afford-time-value {
+display: block;
+font-size: 1.25rem;
+font-weight: 700;
+color: var(–accent-color);
+}
+
+/* Milestones */
+.milestones-card {
+background: linear-gradient(135deg, rgba(255, 167, 38, 0.1) 0%, rgba(31, 31, 31, 1) 100%);
+border: 1px solid rgba(255, 167, 38, 0.3);
+}
+
+.milestones-list {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.milestone-item {
+position: relative;
+padding: 1.5rem;
+background: rgba(255, 255, 255, 0.02);
+border-radius: var(–radius);
+border: 1px solid rgba(255, 167, 38, 0.15);
+overflow: hidden;
+}
+
+.milestone-item::before {
+content: ‘’;
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+background: linear-gradient(90deg, var(–secondary-color), transparent);
+transition: width 0.5s ease;
+}
+
+.milestone-item.completed::before {
+width: 100%;
+}
+
+.milestone-item.in-progress::before {
+animation: progress-glow 2s ease-in-out infinite;
+}
+
+@keyframes progress-glow {
+0%, 100% {
+opacity: 0.3;
+}
+50% {
+opacity: 0.6;
+}
+}
+
+.milestone-content {
+position: relative;
+z-index: 1;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.milestone-info {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.milestone-icon {
+font-size: 2rem;
+filter: drop-shadow(0 0 8px rgba(255, 167, 38, 0.5));
+}
+
+.milestone-details h5 {
+margin: 0 0 0.5rem 0;
+color: var(–text-primary);
+font-size: 1.1rem;
+}
+
+.milestone-progress-bar {
+width: 150px;
+height: 8px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 10px;
+overflow: hidden;
+}
+
+.milestone-progress-fill {
+height: 100%;
+background: linear-gradient(90deg, #ff6b35, #ffa726);
+border-radius: 10px;
+transition: width 1s ease;
+box-shadow: 0 0 10px rgba(255, 167, 38, 0.8);
+}
+
+.milestone-stats {
+text-align: right;
+}
+
+.milestone-amount {
+display: block;
+font-size: 1.5rem;
+font-weight: 700;
+color: var(–secondary-color);
+margin-bottom: 0.25rem;
+}
+
+.milestone-time {
+display: block;
+font-size: 0.875rem;
+color: var(–text-muted);
+}
+
+/* Comparison Card */
+.comparison-card {
+background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(31, 31, 31, 1) 100%);
+border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.comparison-container {
+padding: 1.5rem;
+background: rgba(255, 255, 255, 0.02);
+border-radius: var(–radius);
+border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.comparison-container canvas {
+max-height: 400px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.projection-grid {
+grid-template-columns: 1fr;
+}
+
+.milestone-content {
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+}
+
+.milestone-stats {
+text-align: left;
+}
+
+.afford-item {
+flex-direction: column;
+align-items: flex-start;
+gap: 1rem;
+}
+
+.afford-time {
+text-align: left;
+}
+}
+
+/* Success Celebration */
+.celebration {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 5rem;
+z-index: 10000;
+animation: celebrate 1s ease-out;
+pointer-events: none;
+}
+
+@keyframes celebrate {
+0% {
+opacity: 0;
+transform: translate(-50%, -50%) scale(0);
+}
+50% {
+opacity: 1;
+transform: translate(-50%, -50%) scale(1.2);
+}
+100% {
+opacity: 0;
+transform: translate(-50%, -50%) scale(1);
+}
+}
