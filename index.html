@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Einkommensrechner - Live</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script defer src="main.js"></script>
 </head>
 <body>
@@ -186,6 +187,115 @@
             </div>
             <div class="card-body breakdown-content" id="breakdownContent" style="display: none;">
                 <div class="breakdown-grid" id="breakdownGrid"></div>
+            </div>
+        </section>
+
+        <!-- Money Rain Animation -->
+        <div class="money-rain" id="moneyRain"></div>
+
+        <!-- Wealth Dashboard -->
+        <section class="card wealth-dashboard" id="wealthDashboard" style="display: none;">
+            <div class="card-header">
+                <div class="dashboard-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <h2>Vermögensprojektion</h2>
+                </div>
+                <p class="subtitle">Ihr Einkommenswachstum visualisiert</p>
+            </div>
+            <div class="card-body">
+                <!-- Earnings Chart -->
+                <div class="chart-container">
+                    <h4>📈 Einkommensverlauf</h4>
+                    <canvas id="earningsChart"></canvas>
+                </div>
+
+                <!-- Projection Stats -->
+                <div class="projection-grid">
+                    <div class="projection-card">
+                        <div class="projection-icon">💰</div>
+                        <div class="projection-content">
+                            <span class="projection-label">Diese Woche</span>
+                            <span class="projection-value" id="weekProjection">0 €</span>
+                        </div>
+                    </div>
+                    <div class="projection-card">
+                        <div class="projection-icon">💵</div>
+                        <div class="projection-content">
+                            <span class="projection-label">Dieser Monat</span>
+                            <span class="projection-value" id="monthProjection">0 €</span>
+                        </div>
+                    </div>
+                    <div class="projection-card">
+                        <div class="projection-icon">💎</div>
+                        <div class="projection-content">
+                            <span class="projection-label">Dieses Jahr</span>
+                            <span class="projection-value" id="yearProjection">0 €</span>
+                        </div>
+                    </div>
+                    <div class="projection-card">
+                        <div class="projection-icon">🏆</div>
+                        <div class="projection-content">
+                            <span class="projection-label">In 5 Jahren</span>
+                            <span class="projection-value" id="fiveYearProjection">0 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Can Afford -->
+        <section class="card afford-card" id="affordCard" style="display: none;">
+            <div class="card-header">
+                <div class="dashboard-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <h2>Kaufkraft-Analyse</h2>
+                </div>
+                <p class="subtitle">Was können Sie sich leisten?</p>
+            </div>
+            <div class="card-body">
+                <div class="afford-grid" id="affordGrid"></div>
+            </div>
+        </section>
+
+        <!-- Milestones -->
+        <section class="card milestones-card" id="milestonesCard" style="display: none;">
+            <div class="card-header">
+                <div class="dashboard-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    <h2>Einkommens-Meilensteine</h2>
+                </div>
+                <p class="subtitle">Erreichen Sie Ihre Ziele</p>
+            </div>
+            <div class="card-body">
+                <div class="milestones-list" id="milestonesList"></div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="card comparison-card" id="comparisonCard" style="display: none;">
+            <div class="card-header">
+                <div class="dashboard-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                    <h2>Einkommens-Vergleich</h2>
+                </div>
+                <p class="subtitle">Ihr Einkommen im Vergleich</p>
+            </div>
+            <div class="card-body">
+                <div class="comparison-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
             </div>
         </section>
 
