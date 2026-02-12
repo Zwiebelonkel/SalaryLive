@@ -256,10 +256,10 @@ function showNotification(message, type = "info") {
 
     // Set background color based on type
     const colors = {
-        success: "linear-gradient(135deg, #10b981, #059669)",
-        error: "linear-gradient(135deg, #ef4444, #dc2626)",
-        info: "linear-gradient(135deg, #3b82f6, #2563eb)",
-        warning: "linear-gradient(135deg, #f59e0b, #d97706)"
+        success: "linear-gradient(135deg, #eab308, #ca8a04)",
+        error: "linear-gradient(135deg, #dc2626, #b91c1c)",
+        info: "linear-gradient(135deg, #f59e0b, #d97706)",
+        warning: "linear-gradient(135deg, #fb923c, #ea580c)"
     };
     notification.style.background = colors[type] || colors.info;
 
