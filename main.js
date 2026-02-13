@@ -599,7 +599,7 @@ function showAffordSection() {
                     </div>
                 </div>
                 <div class="afford-time">
-                    <span class="afford-time-label">Arbeitszeit</span>
+                    <span class="afford-time-label">Verdienzeit</span>
                     <span class="afford-time-value">${timeString}</span>
                 </div>
             </div>
