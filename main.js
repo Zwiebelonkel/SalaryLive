@@ -80,6 +80,8 @@ function config() {
     showAffordSection();
     showMilestones();
     showComparison();
+    showSavingsCard();
+    showTimeValueCard();
     startMoneyRain();
     showCelebration("💰");
     
@@ -747,4 +749,172 @@ function createComparisonChart() {
             }
         }
     });
+}
+
+// ============================================
+// NEW FEATURES
+// ============================================
+
+// Show Savings Card
+function showSavingsCard() {
+    const savingsCard = document.getElementById('savingsCard');
+    savingsCard.style.display = 'block';
+}
+
+// Calculate Savings Goal
+function calculateSavingsGoal() {
+    const goalInput = document.getElementById('savingsGoalInput');
+    const rateInput = document.getElementById('savingsRateInput');
+    
+    const goal = parseFloat(goalInput.value);
+    const rate = parseFloat(rateInput.value);
+    
+    if (isNaN(goal) || goal <= 0) {
+        showNotification("Bitte geben Sie ein gültiges Sparziel ein.", "error");
+        return;
+    }
+    
+    if (isNaN(rate) || rate <= 0 || rate > 100) {
+        showNotification("Bitte geben Sie eine gültige Sparrate ein (1-100%).", "error");
+        return;
+    }
+    
+    const monthlySavings = gesamt * (rate / 100);
+    const monthsNeeded = Math.ceil(goal / monthlySavings);
+    const yearsNeeded = Math.floor(monthsNeeded / 12);
+    const remainingMonths = monthsNeeded % 12;
+    
+    const resultDiv = document.getElementById('savingsResult');
+    resultDiv.style.display = 'block';
+    
+    let timeString = '';
+    if (yearsNeeded > 0) {
+        timeString = `${yearsNeeded} ${yearsNeeded === 1 ? 'Jahr' : 'Jahre'}`;
+        if (remainingMonths > 0) {
+            timeString += ` und ${remainingMonths} ${remainingMonths === 1 ? 'Monat' : 'Monate'}`;
+        }
+    } else {
+        timeString = `${monthsNeeded} ${monthsNeeded === 1 ? 'Monat' : 'Monate'}`;
+    }
+    
+    const targetDate = new Date();
+    targetDate.setMonth(targetDate.getMonth() + monthsNeeded);
+    
+    resultDiv.innerHTML = `
+        <div class="savings-result-content">
+            <div class="savings-result-header">
+                <h4>🎯 Ihr Sparziel-Plan</h4>
+            </div>
+            <div class="savings-result-grid">
+                <div class="savings-result-item">
+                    <span class="savings-result-label">Sparziel</span>
+                    <span class="savings-result-value primary">${formatCurrency(goal, 0)}</span>
+                </div>
+                <div class="savings-result-item">
+                    <span class="savings-result-label">Monatliche Sparrate (${rate}%)</span>
+                    <span class="savings-result-value secondary">${formatCurrency(monthlySavings, 2)}</span>
+                </div>
+                <div class="savings-result-item">
+                    <span class="savings-result-label">Benötigte Zeit</span>
+                    <span class="savings-result-value tertiary">${timeString}</span>
+                </div>
+                <div class="savings-result-item">
+                    <span class="savings-result-label">Zieldatum</span>
+                    <span class="savings-result-value quaternary">${targetDate.toLocaleDateString('de-DE', { year: 'numeric', month: 'long' })}</span>
+                </div>
+            </div>
+            <div class="savings-progress-bar">
+                <div class="savings-progress-fill" style="width: 0%; animation: fillProgress 1.5s ease-out forwards;"></div>
+            </div>
+            <div class="savings-tips">
+                <h5>💡 Spar-Tipps:</h5>
+                <ul>
+                    <li>Richten Sie einen Dauerauftrag ein, um automatisch zu sparen</li>
+                    <li>Legen Sie das Geld auf ein separates Sparkonto</li>
+                    <li>Vermeiden Sie Impulskäufe und setzen Sie Prioritäten</li>
+                    <li>Überlegen Sie, ob Sie die Sparrate erhöhen können</li>
+                </ul>
+            </div>
+        </div>
+    `;
+    
+    showNotification("Sparziel erfolgreich berechnet!", "success");
+}
+
+// Show Time Value Card
+function showTimeValueCard() {
+    const timeValueCard = document.getElementById('timeValueCard');
+    timeValueCard.style.display = 'block';
+    updateTimeValueGrid();
+}
+
+function updateTimeValueGrid() {
+    const dailyIncome = gesamt / monat;
+    const hourlyIncome = dailyIncome / 24;
+    const minuteIncome = hourlyIncome / 60;
+    
+    const activities = [
+        { name: 'Pendeln (30 Min)', time: 30, icon: '🚗' },
+        { name: 'Mittagspause (60 Min)', time: 60, icon: '🍽️' },
+        { name: 'Netflix (1 Folge)', time: 45, icon: '📺' },
+        { name: 'Workout (45 Min)', time: 45, icon: '💪' },
+        { name: 'Social Media (30 Min)', time: 30, icon: '📱' },
+        { name: 'Kochen (60 Min)', time: 60, icon: '👨‍🍳' },
+        { name: 'Schlaf (8 Stunden)', time: 480, icon: '😴' },
+        { name: 'Gaming (2 Stunden)', time: 120, icon: '🎮' }
+    ];
+    
+    const grid = document.getElementById('timeValueGrid');
+    grid.innerHTML = activities.map(activity => {
+        const cost = minuteIncome * activity.time;
+        const hours = Math.floor(activity.time / 60);
+        const mins = activity.time % 60;
+        let timeString = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+        
+        return `
+            <div class="time-value-item">
+                <div class="time-value-icon">${activity.icon}</div>
+                <div class="time-value-info">
+                    <h5>${activity.name}</h5>
+                    <p class="time-value-duration">${timeString}</p>
+                </div>
+                <div class="time-value-cost">
+                    <span class="time-value-label">Zeitwert</span>
+                    <span class="time-value-amount">${formatCurrency(cost, 2)}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Toggle Tutorial
+function toggleTutorial() {
+    const content = document.getElementById("tutorialContent");
+    const chevron = document.querySelector(".tutorial-card .chevron");
+
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        chevron.classList.add("open");
+    } else {
+        content.style.display = "none";
+        chevron.classList.remove("open");
+    }
+}
+
+// Toggle FAQ Answer
+function toggleFaqAnswer(questionElement) {
+    const faqItem = questionElement.parentElement;
+    const answer = faqItem.querySelector('.faq-answer');
+    const chevron = questionElement.querySelector('.faq-chevron');
+    
+    const isOpen = answer.style.display === 'block';
+    
+    // Close all other FAQ items
+    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+    document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('open'));
+    
+    if (!isOpen) {
+        answer.style.display = 'block';
+        chevron.classList.add('open');
+    }
 }
