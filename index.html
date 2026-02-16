@@ -297,6 +297,290 @@
                 </div>
             </section>
 
+            <!-- Savings Goals Section -->
+            <section class="card savings-card" id="savingsCard" style="display: none;">
+                <div class="card-header">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        <h2>Sparziele-Rechner</h2>
+                    </div>
+                    <p class="subtitle">Wann erreichen Sie Ihre Ziele?</p>
+                </div>
+                <div class="card-body">
+                    <div class="savings-input-section">
+                        <div class="form-group">
+                            <label for="savingsGoalInput">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Ihr Sparziel
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="number" 
+                                    id="savingsGoalInput" 
+                                    placeholder="z.B. 10000" 
+                                    step="100"
+                                    min="0"
+                                >
+                                <span class="input-suffix">€</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="savingsRateInput">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                Monatliche Sparrate (%)
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="number" 
+                                    id="savingsRateInput" 
+                                    placeholder="z.B. 20" 
+                                    step="1"
+                                    min="0"
+                                    max="100"
+                                    value="20"
+                                >
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="calculateSavingsGoal()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Sparziel berechnen
+                        </button>
+                    </div>
+                    <div class="savings-result" id="savingsResult" style="display: none;"></div>
+                </div>
+            </section>
+
+            <!-- Time Value Calculator -->
+            <section class="card time-value-card" id="timeValueCard" style="display: none;">
+                <div class="card-header">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <h2>Zeitwert-Rechner</h2>
+                    </div>
+                    <p class="subtitle">Was ist Ihre Zeit wert?</p>
+                </div>
+                <div class="card-body">
+                    <div class="time-value-grid" id="timeValueGrid"></div>
+                </div>
+            </section>
+
+            <!-- Tutorial/FAQ Section -->
+            <section class="card tutorial-card" id="tutorialCard">
+                <div class="card-header clickable" onclick="toggleTutorial()">
+                    <div class="dashboard-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                        <h2>Tutorial & Häufige Fragen</h2>
+                    </div>
+                    <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+                <div class="card-body tutorial-content" id="tutorialContent" style="display: none;">
+                    
+                    <!-- How it works -->
+                    <div class="tutorial-section">
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
+                            So funktioniert der Rechner
+                        </h3>
+                        <div class="tutorial-item">
+                            <div class="tutorial-step">1</div>
+                            <div class="tutorial-text">
+                                <h4>Einkommen eingeben</h4>
+                                <p>Geben Sie Ihr monatliches Nettoeinkommen ein – das ist der Betrag, der tatsächlich auf Ihrem Konto landet.</p>
+                            </div>
+                        </div>
+                        <div class="tutorial-item">
+                            <div class="tutorial-step">2</div>
+                            <div class="tutorial-text">
+                                <h4>Arbeitsbeginn wählen</h4>
+                                <p>Wählen Sie das Datum, an dem Sie Ihre aktuelle Arbeit begonnen haben. Dies wird für die Berechnung des Gesamtverdienstes verwendet.</p>
+                            </div>
+                        </div>
+                        <div class="tutorial-item">
+                            <div class="tutorial-step">3</div>
+                            <div class="tutorial-text">
+                                <h4>Live-Tracking beobachten</h4>
+                                <p>Der Rechner zeigt Ihnen in Echtzeit, wie viel Sie pro Sekunde, Minute, Stunde und Tag verdienen – rund um die Uhr!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="tutorial-section">
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Häufig gestellte Fragen
+                        </h3>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaqAnswer(this)">
+                                <span>❓ Warum wird der ganze Tag berechnet und nicht nur die Arbeitszeit?</span>
+                                <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <p><strong>Wichtig zu verstehen:</strong> Dieser Rechner zeigt Ihr <em>monatliches Einkommen</em> aufgeteilt auf die Zeit – unabhängig von Ihrer tatsächlichen Arbeitszeit!</p>
+                                <p>Ein Beispiel: Wenn Sie 2.500 € netto im Monat verdienen, dann:</p>
+                                <ul>
+                                    <li>💰 Teilen wir 2.500 € durch 31 Tage = ~80,65 € pro Tag</li>
+                                    <li>⏰ 80,65 € durch 24 Stunden = ~3,36 € pro Stunde</li>
+                                    <li>⚡ 3,36 € durch 60 Minuten = ~0,056 € pro Minute</li>
+                                </ul>
+                                <p><strong>Das bedeutet:</strong> Der Live-Counter läuft 24/7, auch während Sie schlafen, Freizeit haben oder Urlaub machen – weil Ihr Gehalt ja auch den ganzen Monat abdeckt, nicht nur Ihre Arbeitsstunden.</p>
+                                <p>📊 <em>Es geht hier um die Verteilung Ihres Monatsgehalts auf die Zeit, nicht um Ihren tatsächlichen Stundenlohn während der Arbeit.</em></p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaqAnswer(this)">
+                                <span>🤔 Was ist der Unterschied zum echten Stundenlohn?</span>
+                                <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <p><strong>Zeitwert vs. Stundenlohn:</strong></p>
+                                <ul>
+                                    <li><strong>Echter Stundenlohn:</strong> Ihr Gehalt ÷ tatsächliche Arbeitsstunden (z.B. 160h/Monat bei Vollzeit)</li>
+                                    <li><strong>Zeitwert (dieser Rechner):</strong> Ihr Gehalt ÷ alle Stunden im Monat (31 Tage × 24h = 744h)</li>
+                                </ul>
+                                <p>Beispiel bei 2.500 € netto:</p>
+                                <ul>
+                                    <li>✅ Echter Stundenlohn: 2.500 € ÷ 160h = 15,63 €/h</li>
+                                    <li>📊 Zeitwert: 2.500 € ÷ 744h = 3,36 €/h</li>
+                                </ul>
+                                <p>Dieser Rechner hilft Ihnen zu verstehen, wie sich Ihr Monatseinkommen über die gesamte Zeit verteilt – eine interessante Perspektive auf den Wert Ihrer Zeit!</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaqAnswer(this)">
+                                <span>💾 Werden meine Daten gespeichert?</span>
+                                <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Ja! Der Rechner speichert Ihre Eingaben lokal in Ihrem Browser (localStorage), sodass Sie beim nächsten Besuch nicht alles neu eingeben müssen.</p>
+                                <p><strong>Datenschutz:</strong> Alle Daten bleiben auf Ihrem Gerät – nichts wird an Server gesendet!</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaqAnswer(this)">
+                                <span>📅 Warum wird mit 31 Tagen gerechnet?</span>
+                                <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Der Rechner verwendet standardmäßig 31 Tage als durchschnittlichen Monat, um eine konsistente Berechnung über das Jahr hinweg zu gewährleisten.</p>
+                                <p>Dies ist eine Vereinfachung, die für die meisten Zwecke ausreichend genau ist. Ihr tatsächliches Monatsgehalt bleibt ja gleich, egal ob der Monat 28, 30 oder 31 Tage hat.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaqAnswer(this)">
+                                <span>🎯 Wofür kann ich diesen Rechner nutzen?</span>
+                                <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Der Einkommensrechner ist perfekt für:</p>
+                                <ul>
+                                    <li>🎓 <strong>Perspektivenwechsel:</strong> Sehen Sie Ihr Einkommen aus einer neuen Zeitperspektive</li>
+                                    <li>💡 <strong>Kaufentscheidungen:</strong> "Wie viele Stunden muss ich für XY arbeiten?"</li>
+                                    <li>📊 <strong>Finanzplanung:</strong> Visualisieren Sie Ihr Einkommenswachstum</li>
+                                    <li>🎮 <strong>Motivation:</strong> Beobachten Sie Ihr Einkommen in Echtzeit wachsen</li>
+                                    <li>💰 <strong>Sparziele:</strong> Berechnen Sie, wann Sie Ihre Ziele erreichen</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaqAnswer(this)">
+                                <span>🔄 Wie aktualisiere ich meine Daten?</span>
+                                <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Ändern Sie einfach die Werte im Konfigurationsfeld oben und klicken Sie erneut auf "Berechnung starten". Alle Bereiche werden automatisch mit den neuen Werten aktualisiert.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div class="tutorial-section">
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Tipps & Tricks
+                        </h3>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <div class="tip-icon">💡</div>
+                                <div class="tip-content">
+                                    <h4>Live-Counter nutzen</h4>
+                                    <p>Lassen Sie den Live-Counter laufen, um zu sehen, wie Ihr Verdienst in Echtzeit wächst – motivierend!</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-icon">📊</div>
+                                <div class="tip-content">
+                                    <h4>Vergleichen Sie sich</h4>
+                                    <p>Nutzen Sie den Einkommens-Vergleich, um zu sehen, wo Sie im Vergleich zum Durchschnitt stehen.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-icon">🎯</div>
+                                <div class="tip-content">
+                                    <h4>Setzen Sie Sparziele</h4>
+                                    <p>Verwenden Sie den Sparziele-Rechner, um herauszufinden, wann Sie Ihre finanziellen Ziele erreichen.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-icon">⏰</div>
+                                <div class="tip-content">
+                                    <h4>Kaufkraft verstehen</h4>
+                                    <p>Die "Kaufkraft-Analyse" zeigt, wie lange Sie für verschiedene Produkte arbeiten müssen.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
         </div>
     </main>
 
